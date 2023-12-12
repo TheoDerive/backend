@@ -84,7 +84,7 @@ app.post('/new-project', async (req, res) => {
             project.name === nameProject &&
             project.description === descriptionProject ||
             project.name === nameProject &&
-            project.date === maDate
+            project.date === dateProjet
         );
 
         console.log(isLarge, isTall)
