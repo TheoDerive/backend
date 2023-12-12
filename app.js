@@ -69,19 +69,11 @@ app.post('/new-category', async (req, res) => {
     }
 });
 
-app.get('/new-project', async (req, res) => {
+app.post('/new-project', async (req, res) => {
     await connectToDb();
     const { nameCategory, nameProject, imageProject, descriptionProject } = req.body;
     const allCategory = await Category.findOne({ name: nameCategory });
-    const { annee, mois, jour, isLarge, isTall } = req.body;
-
-    // Vérifier si les données sont présentes et valides
-    if (!annee || !mois || !jour || isNaN(annee) || isNaN(mois) || isNaN(jour)) {
-        return res.status(400).send('Données invalides');
-    }
-
-    // Créer la date à partir des données du corps de la requête
-    const maDate = new Date(annee, mois - 1, jour); // Mois est 0-indexé, donc soustrayez 1
+    const { dateProjet, isLarge, isTall } = req.body;
 
 
     if (allCategory) {
