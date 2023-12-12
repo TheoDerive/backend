@@ -3,16 +3,11 @@ const cors = require('cors');
 const { connectToDb } = require('./utils/database');
 const Category = require('./models/Category');
 const Project = require('./models/Project')
-const corsOptions ={
-    origin:'*',
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200,
-}
-const app = express();
 
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions))
+app.use(cors());
 
 app.get('/', async (req, res) => {
     try{
@@ -103,7 +98,7 @@ app.post('/new-project', async (req, res) => {
                 name: nameProject,
                 image: imageProject,
                 description: descriptionProject,
-                date: maDate ? maDate : new Date(),
+                date: dateProjet ? dateProjet : new Date(),
                 category: nameCategory,
                 isLarge: isLarge,
                 isTall: isTall
