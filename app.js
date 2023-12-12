@@ -45,7 +45,7 @@ app.get('/get-categorie/:categorie', async (req, res) => {
 });
 
 
-app.get('/new-category', async (req, res) => {
+app.post('/new-category', async (req, res) => {
     await connectToDb()
     const { nameCategory, imageCategory } = req.body;
     const allCategory = await Category.findOne({name: nameCategory})
