@@ -157,6 +157,7 @@ app.delete('/delete-category', async (req, res) => {
     await connectToDb()
     const {nameCategory} = req.body
     const removeCategory = await Category.findOneAndDelete({name: nameCategory})
+    console.log(req.body)
 
     if (removeCategory) {
         res.json({ message: 'Catégorie supprimée avec succès !', removeCategory });
@@ -171,7 +172,7 @@ app.put('/update-project', async (req, res) => {
     const { nameCategory, oldProjectName, oldProjectImage, oldProjectDescription, oldProjectDate, oldProjetIsTall, oldProjetIsLarge, newProjectName, newProjectImage, newProjectDescription, newProjectDate, newProjetIsTall, newProjetIsLarge  } = req.body;
 
     const category = await Category.findOne({ name: nameCategory });
-
+    console.log(req.body)
 
     if (category) {
         // Vérifier si le projet existant doit être mis à jour
