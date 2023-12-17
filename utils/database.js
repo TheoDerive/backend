@@ -7,7 +7,7 @@ const connectToDb = async () => {
     mongoose.set('strictQuery', true)
 
     if (isConnected){
-        console.log('Déja Connecter')
+        ('Déja Connecter')
         return
     }else{
 
@@ -20,7 +20,7 @@ const connectToDb = async () => {
 
             isConnected = true
 
-            console.log('Vous etes connecter')
+            ('Vous etes connecter')
         }catch (e) {
             console.error(e)
         }

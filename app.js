@@ -4,6 +4,7 @@ const { connectToDb } = require('./utils/database');
 const Category = require('./models/Category');
 const Project = require('./models/Project')
 
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,7 +34,7 @@ app.get('/all-categories', async (req, res) => {
 
 app.get('/get-categorie/:categorie', async (req, res) => {
     await connectToDb();
-    console.log(req.params.categorie)
+    (req.params.categorie)
 
     try {
         const allCategories = await Category.find({name: req.params.categorie});
@@ -63,7 +64,7 @@ app.post('/new-category', async (req, res) => {
             await newCategory.save()
             res.send('Category crée !')
         }catch (e){
-            console.log(e)
+            (e)
             res.send(e)
         }
     }
@@ -87,7 +88,7 @@ app.post('/new-project', async (req, res) => {
             project.date === dateProjet
         );
 
-        console.log(isLarge, isTall)
+        (isLarge, isTall)
 
         if (projectExists) {
             res.send('Le projet existe déjà dans la catégorie !');
@@ -157,7 +158,7 @@ app.delete('/delete-category', async (req, res) => {
     await connectToDb()
     const {nameCategory} = req.body
     const removeCategory = await Category.findOneAndDelete({name: nameCategory})
-    console.log(req.body)
+    (req.body)
 
     if (removeCategory) {
         res.json({ message: 'Catégorie supprimée avec succès !', removeCategory });
@@ -172,7 +173,7 @@ app.put('/update-project', async (req, res) => {
     const { nameCategory, oldProjectName, oldProjectImage, oldProjectDescription, oldProjectDate, oldProjetIsTall, oldProjetIsLarge, newProjectName, newProjectImage, newProjectDescription, newProjectDate, newProjetIsTall, newProjetIsLarge  } = req.body;
 
     const category = await Category.findOne({ name: nameCategory });
-    console.log(req.body)
+    (req.body)
 
     if (category) {
         // Vérifier si le projet existant doit être mis à jour
@@ -182,7 +183,7 @@ app.put('/update-project', async (req, res) => {
             project.description === oldProjectDescription
         );
 
-        console.log(category.content[projectIndex])
+        (category.content[projectIndex])
 
         if (projectIndex !== -1) {
             // Mettre à jour les détails du projet
@@ -200,7 +201,7 @@ app.put('/update-project', async (req, res) => {
                 { new: true }
             );
 
-            console.log(updatedCategory)
+            (updatedCategory)
 
             res.json(updatedCategory);
         } else {
@@ -236,5 +237,5 @@ app.use((req, res, next) => {
 // Définir le port sur lequel le serveur écoutera
 const port = 3001;
 app.listen(port, () => {
-    console.log(`Serveur en cours d'exécution sur le port ${port}`);
+    (`Serveur en cours d'exécution sur le port ${port}`);
 });
